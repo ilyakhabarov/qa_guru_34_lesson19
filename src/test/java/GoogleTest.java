@@ -1,16 +1,14 @@
-import config.WebDriverProvider;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.codeborne.selenide.Selenide.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GoogleTest {
 
-    private final WebDriver driver = new WebDriverProvider().get();
-
     @Test
     void checkTitle() {
-        driver.get("https://google.com");
-        assertEquals("Google", driver.getTitle());
+        open("https://google.com");
+        String title = title();
+        assertThat(title).isEqualTo("Google");
     }
 }
